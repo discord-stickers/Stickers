@@ -1,0 +1,7 @@
+{
+  "name": "Stickers",
+  "description": "Unlocking Discord Stickers for everyone.",
+  "author": "respecting",
+  "file": "src/index.js",
+  "license": "Unlicense"
+}

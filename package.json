@@ -1,0 +1,19 @@
+{
+  "name": "stickers",
+  "version": "1.0.0",
+  "description": "Cumcord plugin for Stickers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/discord-stickers/Stickers.git"
+  },
+  "author": "respecting",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/discord-stickers/Stickers/issues"
+  },
+  "homepage": "https://github.com/discord-stickers/Stickers#readme"
+}
