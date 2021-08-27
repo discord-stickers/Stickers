@@ -14,13 +14,13 @@ export default {
     onLoad() {
         if (getCurrentUser().premiumType == 2) return showToast({"title": "Users with Nitro cannot use FreeStickers.", "duration": 5000})
 
-        // patch pSendability to send sticker url and inject CSS to remove grayscale
+        // patch getStickerSendability to send sticker url and inject CSS to remove grayscale
         unpatch.push(patcher.before("getStickerSendability", getStickerSendability, ([args]) => {
             if (document.querySelector(".drawerSizingWrapper-17Mss4")) {
                 if (args.format_type == 1 || args.format_type == 2) {
                     closeExpressionPicker();
                     return ComponentDispatch.dispatchToLastSubscribed("INSERT_TEXT", {
-                        content: " " + getStickerAssetUrl(args)
+                        content: " " + getStickerAssetUrl(args).replace(/[0-9]{3}/g, "160")
                     });
                 }
             }
