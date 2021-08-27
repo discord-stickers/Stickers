@@ -1,2 +1,2 @@
 # Stickers
-Cumcord plugin to unlock Stickers.
+Cumcord plugin to unlock community Stickers.
