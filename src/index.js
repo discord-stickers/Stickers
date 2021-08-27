@@ -2,8 +2,8 @@ import { webpackModules } from "@cumcord/modules";
 import { patcher } from "@cumcord";
 
 // yeah
-const getStickerAssetUrl = webpackModules.findByProps("getStickerAssetUrl"),
-    getStickerSendability = webpackModules.findByProps("getStickerSendability"),
+const getStickerSendability = webpackModules.findByProps("getStickerSendability"),
+    { getStickerAssetUrl } = webpackModules.findByProps("getStickerAssetUrl"),
     { ComponentDispatch } = webpackModules.findByProps("ComponentDispatch"),
     { closeExpressionPicker } =  webpackModules.findByProps("closeExpressionPicker");
 
@@ -21,10 +21,7 @@ export default {
                 });
             }
         });
-        injectedCSS = patcher.injectCSS(`.stickerUnsendable-2q_h2B {
-            webkit-filter: grayscale(0%) !important;
-            filter: grayscale(0%) !important;
-        }`);
+        injectedCSS = patcher.injectCSS(`.stickerUnsendable-2q_h2B{webkit-filter: grayscale(0%) !important;filter: grayscale(0%) !important;}`);
     },
     onUnload() {
         // unpatch
