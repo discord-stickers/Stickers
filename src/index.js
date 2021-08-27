@@ -1,15 +1,19 @@
 import { findByProps } from "@cumcord/modules/webpackModules";
+import { showToast } from "@cumcord/ui/toasts";
 import { patcher } from "@cumcord";
 
 // yeah
 const getStickerSendability = findByProps("getStickerSendability"),
     { getStickerAssetUrl } = findByProps("getStickerAssetUrl"),
     { ComponentDispatch } = findByProps("ComponentDispatch"),
-    { closeExpressionPicker } =  findByProps("closeExpressionPicker"),
+    { closeExpressionPicker } = findByProps("closeExpressionPicker"),
+    { getCurrentUser } = findByProps("getCurrentUser"),
     unpatch = [];
 
 export default {
     onLoad() {
+        if (getCurrentUser().premiumType == 2) return showToast({"title": "Users with Nitro cannot use FreeStickers.", "duration": 5000})
+
         // patch pSendability to send sticker url and inject CSS to remove grayscale
         unpatch.push(patcher.before("getStickerSendability", getStickerSendability, ([args]) => {
             if (document.querySelector(".drawerSizingWrapper-17Mss4")) {
