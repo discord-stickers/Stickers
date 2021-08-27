@@ -15,7 +15,6 @@ export default {
         // patch pSendability to send sticker url and inject CSS to remove grayscale
         pSendability = patcher.before("getStickerSendability", getStickerSendability, ([args]) => {
             if (document.querySelector(".drawerSizingWrapper-17Mss4")) {
-                console.log((document.querySelector(".drawerSizingWrapper-17Mss4")))
                 if (args.format_type == 1 || args.format_type == 2) {
                     closeExpressionPicker();
                     return ComponentDispatch.dispatchToLastSubscribed("INSERT_TEXT", {
