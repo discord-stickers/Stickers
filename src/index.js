@@ -8,6 +8,8 @@ const getStickerSendability = findByProps("getStickerSendability"),
     { ComponentDispatch } = findByProps("ComponentDispatch"),
     { closeExpressionPicker } = findByProps("closeExpressionPicker"),
     { getCurrentUser } = findByProps("getCurrentUser"),
+    { drawerSizingWrapper } = WebpackModules.getByProps("drawerSizingWrapper"),
+    { stickerUnsendable } = WebpackModules.getByProps("stickerUnsendable"),
     unpatch = [];
 
 export default {
@@ -16,7 +18,7 @@ export default {
 
         // patch getStickerSendability to send sticker url and inject CSS to remove grayscale
         unpatch.push(patcher.before("getStickerSendability", getStickerSendability, ([args]) => {
-            if (document.querySelector(".drawerSizingWrapper-17Mss4")) {
+            if (document.querySelector(`.${drawerSizingWrapper}`)) {
                 if (args.format_type == 1 || args.format_type == 2) {
                     closeExpressionPicker();
                     return ComponentDispatch.dispatchToLastSubscribed("INSERT_TEXT", {
@@ -25,7 +27,8 @@ export default {
                 }
             }
         }));
-        unpatch.push(patcher.injectCSS(`.stickerUnsendable-2q_h2B{webkit-filter: grayscale(0%) !important;filter: grayscale(0%) !important;}`));
+        
+        unpatch.push(patcher.injectCSS(`.${stickerUnsendable}{webkit-filter: grayscale(0%) !important;filter: grayscale(0%) !important;}`));
     },
     onUnload() {
         // unpatch
