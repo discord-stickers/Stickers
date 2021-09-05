@@ -30,13 +30,14 @@ export default {
         // patch getStickerSendability to send sticker url
         unpatch.push(before("getStickerSendability", getStickerSendability, ([args]) => {
             if (!document.querySelector(`.${stickerAsset}:hover`)) return; // check if hovering over sticker to prevent bugs
-            if (args.format_type == 3) return closeExpressionPicker();
+            if (args.format_type == 3 || args?.sort_value) return closeExpressionPicker();
             closeExpressionPicker();
             return ComponentDispatch.dispatchToLastSubscribed("INSERT_TEXT", {
                 content: ` ${getStickerAssetUrl(args).replace(/=[0-9]{3}/g, "=160")}`
             });
         }));
-
+        
+        // patch isSendableSticker to make search work
         unpatch.push(after("isSendableSticker", isSendableSticker, () => {
             if (!document.querySelector(`.${input}`) && !document.querySelector(`.${disabled}`)) return;
             document.querySelector(`.${input}`)?.removeAttribute("disabled");
