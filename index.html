@@ -1,2 +1,16 @@
-<textarea>https://discord-stickers.github.io/Stickers/dist/</textarea>
-Copy this text into Cumcord to add the plugin.
+<button onclick="install">click me to install to cumcord</button>
+<script>
+// lol stolen from ruthenic
+function install() {
+  let opts = {
+    action: "install_plugin",
+    id: "cum",
+    url: "https://discord-stickers.github.io/Stickers/dist/"
+  }
+  let ccConn;
+  ccConn = new WebSocket("ws://127.0.0.1:6463/cumcord") //TODO: automatically retry on next port if connection fails
+  ccConn.onopen = (event) => {
+    ccConn.send(JSON.stringify(opts))
+  }
+}
+</script>
