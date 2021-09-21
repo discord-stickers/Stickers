@@ -1,4 +1,4 @@
-import { findByProps } from "@cumcord/modules/webpackModules";
+import { findByProps } from "@cumcord/modules/webpack";
 import { showToast } from "@cumcord/ui/toasts";
 import { before, after, injectCSS } from "@cumcord/patcher";
 
